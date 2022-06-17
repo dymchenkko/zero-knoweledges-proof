@@ -1,0 +1,15 @@
+[package]
+name = "methods-guest"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+
+[build-dependencies]
+risc0-build = "0.9"
+
+[dependencies]
+risc0-zkvm-guest = "0.9"
+cbor-no-std = "0.3.0"
+checker-core = { path = "../../core" }
+aes-gcm = "0.9.4"

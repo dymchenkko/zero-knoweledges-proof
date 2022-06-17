@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "core",
+    "methods",
+    "starter",
+]
+
+[patch.crates-io]
+radium = { git = "https://github.com/mystor/radium.git", branch = "feature/3" }

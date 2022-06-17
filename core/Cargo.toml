@@ -1,0 +1,11 @@
+[package]
+name = "checker-core"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version = "1.0", default-features = false }
+serde_bytes = { version = "0.11.6", default-features = false, features = ["alloc"] }
+risc0-zkvm-core = { version = "0.9", default-features = false, features = ["pure"] }

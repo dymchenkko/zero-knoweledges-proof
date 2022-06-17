@@ -1,0 +1,13 @@
+[package]
+name = "starter"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+methods = { path = "../methods" }
+risc0-zkvm-core = "0.9"
+risc0-zkvm-host = "0.9"
+risc0-zkvm-serde = "0.9"
+aes-gcm = "0.9.4"
+checker-core = { path = "../core" }
+cbor-no-std = "0.3.0"
