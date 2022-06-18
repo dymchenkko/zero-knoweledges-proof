@@ -11,3 +11,4 @@ risc0-zkvm-serde = "0.9"
 aes-gcm = "0.9.4"
 checker-core = { path = "../core" }
 cbor-no-std = "0.3.0"
+rand = "0.8.5"

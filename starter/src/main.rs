@@ -9,14 +9,17 @@ use checker_core::{Student, FileContent, ProofResult, AddProof};
 use cbor_no_std::{ ser::to_bytes, value::Value};
 use std::collections::BTreeMap;
 use std::time::Instant;
+use rand::Rng;
+
 
 fn main() {
+
     let mut file = File::open("students_db.txt").expect("Couldn't open database");
 
     let mut contents = String::new();
     file.read_to_string(&mut contents).expect("Couldn't read a database");
 
-    let nonce_bytes = b"uniiue nonce";
+    let nonce_bytes  = &rand::thread_rng().gen::<[u8; 12]>();
     let secret_key_bytes = b"an example very very secret key.";
     let key = Key::from_slice(secret_key_bytes);
     let cipher = Aes256Gcm::new(key);
