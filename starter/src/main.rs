@@ -8,6 +8,7 @@ use aes_gcm::aead::{Aead, NewAead};
 use checker_core::{Student, FileContent, ProofResult, AddProof};
 use cbor_no_std::{ ser::to_bytes, value::Value};
 use std::collections::BTreeMap;
+use std::time::Instant;
 
 fn main() {
     let mut file = File::open("students_db.txt").expect("Couldn't open database");
@@ -77,7 +78,10 @@ fn new_student_proof(student_to_add: &Student, file_content: &FileContent) -> Ad
     prover.add_input(to_vec(&student_to_add).unwrap().as_slice()).unwrap();
     prover.add_input(to_vec(&file_content).unwrap().as_slice()).unwrap();
 
+    let now = Instant::now();
     let receipt = prover.run().unwrap();
+    let elapsed = now.elapsed();
+    println!("Elapsed new student proof: {:.3?}", elapsed);
 
     let proof: AddProof = from_slice(&receipt.get_journal_vec().unwrap()).unwrap();
     proof
@@ -90,7 +94,11 @@ fn proof (student: &Student, file_content: &FileContent) -> ProofResult {
     prover.add_input(to_vec(&student).unwrap().as_slice()).unwrap();
     prover.add_input(to_vec(&file_content).unwrap().as_slice()).unwrap();
 
+    let now = Instant::now();
     let receipt = prover.run().unwrap();
+    let elapsed = now.elapsed();
+    println!("Elapsed check student proof: {:.3?}", elapsed);
+
 
     let proof: ProofResult = from_slice(&receipt.get_journal_vec().unwrap()).unwrap();
     proof
